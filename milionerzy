@@ -1,0 +1,87 @@
+#
+import random
+
+print(f'MILIONERZY')
+
+print(f'Zabawa składa się z 5 pytań. Jedna odpowiedź jest poprawna')
+
+
+import sys
+
+
+#baza pytań
+
+
+
+pytanie1 = ['Suma stopni w trójkącie to: ', 'A: 90 , B: 120, C: 180, D: 360' , 'C', 500, random.choice(['A', 'B', 'D'])]
+
+pytanie2 = ['Suma stopni w kawdracie to: ','A: 90, B: 120, C: 180, D: 360', 'D', 1000, random.choice(['A', 'B', 'C'])]
+
+pytanie3 = ['Ile ścian ma sześcian?: ', 'A: 6, B: 8, C: 12, D: 4',  'A', 2500,  random.choice(['B', 'C', 'D'])]
+
+pytanie4 = ['Ile ścian ma prostopadłościań?: ', 'A: 6, B: 8, C: 12, D: 4', 'A', 5000, random.choice(['B', 'C', 'D'])]
+
+pytanie5 = ['Ile ścian ma ostrosłup?: ', 'A: 6, B: 8, C: 2, D: 4', 'A', 5000, random.choice(['A', 'B', 'D'])]
+
+
+pytania = [pytanie1, pytanie2, pytanie3, pytanie4, pytanie5]
+
+
+
+poczatek = input(f' Czy wyświetlić pierwsze pytanie? TAK / NIE  ')
+
+wygrana = 0
+kolo=0
+
+if poczatek == 'TAK':
+    for kolejne_pytanie in pytania:
+        print(kolejne_pytanie[0])
+        print(kolejne_pytanie[1])
+        print(f' Za poprawną odpowiedź otrzymasz ', kolejne_pytanie[3], 'zł!')
+
+
+        czy_kolo_ratunkowe = input('Czy potrzebujesz koła ratunkowego? TAK/NIE ')
+
+        if czy_kolo_ratunkowe == "NIE":
+            odpowiedz1_gracza = input(f'Twoja odpowiedź to:  ')
+
+
+        elif czy_kolo_ratunkowe == "TAK":
+
+            if kolo == 0:
+                kolo = kolo+1
+                print("Wybrałeś koło PÓŁ NA PÓŁ")
+                print("Jedna odpowiedź jest poprawna: ", kolejne_pytanie[4], "lub" , kolejne_pytanie[2])
+
+
+            else:
+                 print(f'Wykorzystałeś już koło ratunkowe')
+            odpowiedz1_gracza = input(f'Twoja odpowiedź to:  ')
+
+
+
+        if odpowiedz1_gracza == kolejne_pytanie[2]:
+
+            print(f'Gratulacje! Wygrałeś', kolejne_pytanie[3], 'zł.')
+            wygrana += kolejne_pytanie[3]
+            print(f'Twój stan konta to: ', wygrana , 'zł!')
+            czy_gramy_dalej = input(f'Czy gramy dalej? TAK/NIE  ')
+
+            if czy_gramy_dalej == "TAK":
+                continue
+            else:
+                print(f' Dziękuję za grę. Wygrałeś ', wygrana, 'zł!')
+                sys.exit()
+
+
+
+        else:
+           print(f'To nie jest poprawna odpowiedź. KONIEC GRY')
+           sys.exit()
+
+    else:
+        print(f'Wykorzystałeś już koło ratunkowe.')
+
+else:
+    print (f'Ok - zacznij jeszcze raz jak będziesz gotowy')
+    sys.exit()
